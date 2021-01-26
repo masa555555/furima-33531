@@ -1,5 +1,99 @@
 # README
+# DB 設計
 
+## users table
+
+| Column                    | Type                     | Option                  |
+|---------------------------|--------------------------|-------------------------|
+| nickname                  | string                   | null false              |
+| password                  | string                   | null false              |
+| email                     | string                   | null false              |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+
+### Association
+has_many
+
+
+
+## items
+
+| Column                    | Type                     | Option                  |
+|---------------------------|--------------------------|-------------------------|
+| name                      | string                   | null false              |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+
+### Association
+
+
+
+
+| Column                    | Type                     | Option                  |
+|---------------------------|--------------------------|-------------------------|
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+
+### Association
+
+
+| Column                    | Type                     | Option                  |
+|---------------------------|--------------------------|-------------------------|
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+
+
+
+### Association
+
+
+
+
+
+
+
+| Column                    | Type                     | Option                  |
+|---------------------------|--------------------------|-------------------------|
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+|                           |                          |                         |
+
+### Association
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
