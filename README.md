@@ -6,7 +6,7 @@
 | Column                    | Type                     | Option                  |
 |---------------------------|--------------------------|-------------------------|
 | nickname                  | string                   | null: false             |
-| password                  | string                   | null: false             |
+| encrypted_password        | string                   | null: false,default:""  |
 | email                     | string                   | null: false             |
 | first_name                | string                   | null: false             |
 | family_name               | string                   | null: false             |
@@ -20,9 +20,9 @@
 |                           |                          |                         |
 |                           |                          |                         |
 ### Association
-- has_many :items
+- has_many    :items
 - has_many    :comments
-- belongs_to  :order
+- has_many    :order
 
 
 
@@ -38,36 +38,36 @@
 | name                      | string                   | null: false                       |
 | description               | text                     | null: false                       |
 | price                     | integer                  | null: false                       |
-| size                      | reference                | null: false.foreign_key: true     |
-| preparation_day           | reference                | null: false.foreign_key: true     |
-| item_condition            | reference                | null: false.foreign_key: true     |
+| size                      | integer                  | null: false.foreign_key: true     |
+| preparation_day           | integer                  | null: false.foreign_key: true     |
+| item_condition            | integer                  | null: false.foreign_key: true     |
 | category_id               | integer                  | null: false.genre_id              |
-| postage_payer             | reference                | null: false.foreign_key: true     |
-| seller                    | reference                | null: false.foreign_key: true     |
-| buyer                     | reference                | null: false.foreign_key: true     |
-| deal_closed_data          | timestamp                |                                   |
-| item_img                  | reference                | null: false.foreign_key: true     |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
+| shipping_fee              | integer                  | null: false.foreign_key: true     |
+| user_id                   | reference                | null: false.foreign_key: true     |
+
 ### Association
 - belongs_to :order
 - belongs_to :user
 - belongs_to :category_id
+- belongs_to_active_hash :size
 - belongs_to_active_hash :item_condition
-- belongs_to_active_hash :postage_payer
+- belongs_to_active_hash :shipping_fee
 - belongs_to_active_hash :preparation_day
-- belongs_to :seller, class_name: "user"
-- belongs_to :buyer, class_name: "user"
+- belongs_to :user_id, class_name: "user"
 - has_many :comments
-- has_many :item_imgs, dependent: :destroy 
 
 
+## sizes(active_hash)
+| Column                    | Type                     | Option                            |
+|---------------------------|--------------------------|-----------------------------------|
+| size                      | integer                  | null: false                       |
+### Association
+- has_many :items
 
 ## category_id
 | Column                    | Type                     | Option                            |
 |---------------------------|--------------------------|-----------------------------------|
-| name                      | string                   |  null: false                      |
+| name                      | integer                  |  null: false                      |
 
 ### Association
   has_many :items
@@ -76,15 +76,15 @@
 ## item_conditions(active_hash)
 | Column                    | Type                     | Option                            |
 |---------------------------|--------------------------|-----------------------------------|
-| item_condition            | string                   |  null: false                      |
+| item_condition            | integer                  |  null: false                      |
 ### Association 
 - has_many :items
 
 
-## postage_payer(active_hash)
+## shipping_fees (active_hash)
 | Column                    | Type                     | Option                            |
 |---------------------------|--------------------------|-----------------------------------|
-| postage_payer               | string                   |  null: false                      |
+| postage_payer             | integer                  |  null: false                      |
 ### Association
 - has_many :items
 
@@ -92,18 +92,12 @@
 ## preparation_days(active_hash)
 | Column                    | Type                     | Option                            |
 |---------------------------|--------------------------|-----------------------------------|
-| preparation_day_id        | string                   |  null: false                      |
+| preparation_day_id        | integer                  |  null: false                      |
 ### Association
 - has_many :items
 
 
-## itemimgs
-| Column                    | Type                     | Option                            |
-|---------------------------|--------------------------|-----------------------------------|
-| item                      | references               | null: false.foreign_key:  true    |
-| url                       | string                   | null: false                       |
-### Association
-- belongs_to :item
+
 
 
 
@@ -130,18 +124,14 @@
 |                           |                          |                                   |
 |                           |                          |                                   |
 ### Association
-- has_one_to :user
+- belongs_to :user
 - belongs_to  :item
-- belongs_to  :sending_destinations
+- has_one  :sending_destination
 
 
 ## sending_destinations
 | Column                       | Type                     | Option                         |
 |------------------------------|--------------------------|--------------------------------|
-| destination_first_name       | string                   | null: false                    |
-| destination_family_name      | string                   | null: false                    |
-| destination_first_name_kana  | string                   | null: false                    |
-| destination_family_name_kana | string                   | null: false                    |
 | post_code                    | integer                  | null: false                    |
 | prefecture_code              | integer                  | null: false                    |
 | city                         | string                   | null: false                    |
@@ -150,7 +140,7 @@
 | phone_number                 | integer                  | unique: true                   |
 | user                         | references               | null: false.foreign_key:  true |
 ### Association
-- has_many :orders
+- belongs_to :order
 
 
 
@@ -178,25 +168,3 @@
 belongs_to :item
 belongs_to :user
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
