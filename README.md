@@ -36,10 +36,10 @@
 | price                     | integer                  | null: false                       |
 | preparation_day_id        | integer                  | null: false.foreign_key: true     |
 | item_condition_id         | integer                  | null: false.foreign_key: true     |
-| category_id               | integer                  | null: false.genre_id              |
+| category_id               | integer                  | null: false.foreign_key: true     |
 | shipping_fee_id           | integer                  | null: false.foreign_key: true     |
 | prefecture_id             | integer                  | null: false.foreign_key: true     |
-| user                      | reference                | null: false.foreign_key: true     |
+| user                      | references               | null: false.foreign_key: true     |
 
 ### Association
 - belongs_to :user
