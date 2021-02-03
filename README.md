@@ -46,7 +46,6 @@
 | user_id                   | reference                | null: false.foreign_key: true     |
 
 ### Association
-- belongs_to :order
 - belongs_to :user
 - belongs_to :category_id
 - belongs_to_active_hash :size
@@ -55,7 +54,7 @@
 - belongs_to_active_hash :preparation_day
 - belongs_to :user_id, class_name: "user"
 - has_many :comments
-
+- has_one  :order
 
 ## sizes(active_hash)
 | Column                    | Type                     | Option                            |
@@ -132,12 +131,12 @@
 ## sending_destinations
 | Column                       | Type                     | Option                         |
 |------------------------------|--------------------------|--------------------------------|
-| post_code                    | integer                  | null: false                    |
+| post_code                    | string                   | null: false                    |
 | prefecture_code              | integer                  | null: false                    |
 | city                         | string                   | null: false                    |
 | house_number                 | string                   | null: false                    |
 | building_name                | string                   |                                |
-| phone_number                 | integer                  | unique: true                   |
+| phone_number                 | string                   | null: false                    |
 | user                         | references               | null: false.foreign_key:  true |
 ### Association
 - belongs_to :order
