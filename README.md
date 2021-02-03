@@ -12,7 +12,7 @@
 | family_name               | string                   | null: false             |
 | first_name_kana           | string                   | null: false             |
 | family_name_kana          | string                   | null: false             |
-|                           |                          |                         |
+| birth_date                | integer                  | null: false             |
 |                           |                          |                         |
 |                           |                          |                         |
 |                           |                          |                         |
@@ -22,7 +22,7 @@
 ### Association
 - has_many    :items
 - has_many    :comments
-- has_many    :order
+- has_many    :orders
 
 
 
@@ -38,20 +38,20 @@
 | name                      | string                   | null: false                       |
 | description               | text                     | null: false                       |
 | price                     | integer                  | null: false                       |
-| size                      | integer                  | null: false.foreign_key: true     |
-| preparation_day           | integer                  | null: false.foreign_key: true     |
-| item_condition            | integer                  | null: false.foreign_key: true     |
+| size_id                   | integer                  | null: false.foreign_key: true     |
+| preparation_day_id        | integer                  | null: false.foreign_key: true     |
+| item_condition_id         | integer                  | null: false.foreign_key: true     |
 | category_id               | integer                  | null: false.genre_id              |
-| shipping_fee              | integer                  | null: false.foreign_key: true     |
+| shipping_fee_id           | integer                  | null: false.foreign_key: true     |
 | user_id                   | reference                | null: false.foreign_key: true     |
 
 ### Association
 - belongs_to :user
 - belongs_to :category_id
-- belongs_to_active_hash :size
-- belongs_to_active_hash :item_condition
-- belongs_to_active_hash :shipping_fee
-- belongs_to_active_hash :preparation_day
+- belongs_to_active_hash :size_id
+- belongs_to_active_hash :item_condition_id
+- belongs_to_active_hash :shipping_fee_id
+- belongs_to_active_hash :preparation_day_id
 - belongs_to :user_id, class_name: "user"
 - has_many :comments
 - has_one  :order
@@ -63,7 +63,7 @@
 ### Association
 - has_many :items
 
-## category_id
+## categories
 | Column                    | Type                     | Option                            |
 |---------------------------|--------------------------|-----------------------------------|
 | name                      | integer                  |  null: false                      |
@@ -91,7 +91,7 @@
 ## preparation_days(active_hash)
 | Column                    | Type                     | Option                            |
 |---------------------------|--------------------------|-----------------------------------|
-| preparation_day_id        | integer                  |  null: false                      |
+| preparation_day           | integer                  |  null: false                      |
 ### Association
 - has_many :items
 
