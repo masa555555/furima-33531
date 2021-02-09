@@ -17,7 +17,6 @@
 
 ### Association
 - has_many    :items
-- has_many    :comments
 - has_many    :orders
 
 
