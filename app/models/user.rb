@@ -4,14 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])\w{6,12}\z/
-
-         validates :nickname, presence: true
-         validates :email, presence:  true
-         validates :password, presence: true, format: {with:VALID_PASSWORD_REGEX,
-        message: "doesn't input a small character and number with harf size"
-        }
-         validates :password_confirmation, presence: true, length: { minimum: 6}
-
+         
+        with_options presence:true do
+         validates :nickname
+         validates :email
+         with_options format: {with:VALID_PASSWORD_REGEX,
+          message: "doesn't input a small character and number with harf size"} do
+         validates :password
+         validates :password_confirmation
+          end
+        end
+      
          with_options format: {with: /\A[ぁ-んァ-ン一-龥]/} do
          validates :family_name, presence:  true
          validates :first_name, presence: true
@@ -25,4 +28,5 @@ class User < ApplicationRecord
 
          has_many :items
          has_many :orders
-end
+
+        end
