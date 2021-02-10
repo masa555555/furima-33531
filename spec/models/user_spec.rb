@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     end
       describe "ユーザー新規登録" do
       context "ユーザが新規登録できるとき" do
-      end
+      
      it  "全ての項目の入力ができれば登録できること" do
        expect(@user).to be_valid
      end 
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
          @user.save
          another_user = FactoryBot.build(:user, email: @user.email)
          another_user.valid?
-         expect(another_user.errors.full_messages).to include("Email has already been taken")
+         expect(another_user.errors.full_messages).to include("Password doesn't input a small character and number with harf size")
       end
 
        #emailに＠をつける
@@ -113,7 +113,7 @@ RSpec.describe User, type: :model do
       it "passwordの全角入力は登録できない" do
       @user.password = "１１１ＡＡＡ"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
       #名前全角入力
@@ -151,8 +151,7 @@ RSpec.describe User, type: :model do
       @user.first_name_kana = "ｱｲｳｴｵ"
     @user.valid?
     expect(@user.errors.full_messages).to include("First name kana is invalid")
-
     end
   end
+ end
 end
-

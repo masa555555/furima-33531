@@ -12,19 +12,19 @@ class User < ApplicationRecord
           message: "doesn't input a small character and number with harf size"} do
          validates :password
          validates :password_confirmation
-          end
         end
       
-         with_options format: {with: /\A[ぁ-んァ-ン一-龥]/} do
-         validates :family_name, presence:  true
-         validates :first_name, presence: true
+      
+         with_options format: {with: /\A[ぁ-んァ-ン一-龥々]/} do
+         validates :family_name
+         validates :first_name
          end
          with_options format: {with: /\A[ァ-ヶー－]+\z/ } do
-         validates :family_name_kana, presence: true
-         validates :first_name_kana, presence:  true
+         validates :family_name_kana
+         validates :first_name_kana
          end
-         validates :birth_date, presence: true
-         
+         validates :birth_date
+        end
 
          has_many :items
          has_many :orders
