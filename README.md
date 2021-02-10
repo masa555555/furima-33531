@@ -17,7 +17,6 @@
 
 ### Association
 - has_many    :items
-- has_many    :comments
 - has_many    :orders
 
 
@@ -73,29 +72,4 @@
 ### Association
 - belongs_to :order
 
-
-
-
-
-
-
-
-## comments
-| Column                    | Type                     | Option                            |
-|---------------------------|--------------------------|-----------------------------------|
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-|                           |                          |                                   |
-
-
-### Association
-belongs_to :item
-belongs_to :user
 
