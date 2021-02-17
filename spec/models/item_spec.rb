@@ -73,12 +73,12 @@ context "出品物の情報登録が上手くできない時" do
   expect(@item.errors.full_messages).to include("Price is not a number")
   end
   it "priceが299円以下では出品できない" do
-  @item.price = "298"
+  @item.price = 298
   @item.valid?
   expect(@item.errors.full_messages).to include("Price must be greater than 299")
   end
   it "priceが10_000_000円以上では出品できない" do
-  @item.price = "10000001"
+  @item.price = 10000001
   @item.valid?
   expect(@item.errors.full_messages).to include("Price must be less than 10000000")
   end
