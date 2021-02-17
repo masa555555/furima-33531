@@ -62,7 +62,27 @@ context "出品物の情報登録が上手くできない時" do
     @item.valid?
     expect(@item.errors.full_messages).to include("Price is not a number")
   end
-end
+  it "priceが半角英数混合では出品できない" do
+  @item.price = "a1"
+  @item.valid?
+  expect(@item.errors.full_messages).to include("Price is not a number")
+  end
+  it "priceが半角英字のみでは出品できない" do
+  @item.price = "a"
+  @item.valid?
+  expect(@item.errors.full_messages).to include("Price is not a number")
+  end
+  it "priceが299円以下では出品できない" do
+  @item.price = "298"
+  @item.valid?
+  expect(@item.errors.full_messages).to include("Price must be greater than 299")
+  end
+  it "priceが10_000_000円以上では出品できない" do
+  @item.price = "10000001"
+  @item.valid?
+  expect(@item.errors.full_messages).to include("Price must be less than 10000000")
+  end
+ end
 end
 pending "add some examples to (or delete) #{__FILE__}"
 end

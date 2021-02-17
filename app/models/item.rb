@@ -9,18 +9,21 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   has_one   :order
   has_one_attached :image 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :price, presence: true
+
+  with_options presence:true do
+  validates :name
+  validates :description
+  validates :price
+  validates :image
+  end
+  with_options numericality: { other_than: 1 } do
+  validates :category_id
+  validates :prefecture_id
+  validates :preparation_day_id
+  validates :item_condition_id
+  validates :shipping_fee_id
+  end
   validates :price, numericality: {only_integer: true}
-  validates :category_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :preparation_day_id, numericality: { other_than: 1 }
-  validates :item_condition_id, numericality: { other_than: 1 }
-  validates :shipping_fee_id, numericality: { other_than: 1 }
-  validates :image, presence: true
-  
-
-
-
+  validates :price, numericality: {greater_than: 299}
+  validates :price, numericality: {less_than: 10000000}
 end
