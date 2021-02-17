@@ -84,5 +84,4 @@ context "出品物の情報登録が上手くできない時" do
   end
  end
 end
-pending "add some examples to (or delete) #{__FILE__}"
 end
